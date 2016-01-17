@@ -38,10 +38,15 @@ def ai_single(hand, deck):
 	test_card = cards.card("null", 0)
 	current_largest = test_card
 	for x in hand:
-		if x.get_value() > current_largest.get_value() and x.get_name() != "Mayo" and x.get_name() != "Ketchup":
+		if x.get_value() > current_largest.get_value() and x.get_name() != "Mayo" and x.get_name() != "Ketchup" and x.get_name() != "Laxative" and x.get_name() != "Exercise":
 			current_largest = x;
-	
-	ai_card = current_largest
+
+	if current_largest.get_name() == "null":
+		hand.remove(hand[0])
+		ai_card = cards.card("Patty", 1)
+	else:	
+		hand.remove(current_largest)
+		ai_card = current_largest
 	hand, deck = add_cards(hand, deck)
 	ai_card_choice = []
 	ai_card_choice.append(ai_card.get_name().lower())
